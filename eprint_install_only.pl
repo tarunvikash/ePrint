@@ -3,7 +3,7 @@
 
 use strict;
 use warnings;
-
+use File::chdir;
 
 print "Locating ePrint package....\n";
 
@@ -23,7 +23,8 @@ print "Creating the /home/install directory....\n";
 system("mkdir -p /home/install");
 
 print "Changing to /home/install directory....\n";
-system("cd /home/install");
+#system("cd /home/install");
+chdir("/home/install");
 
 print "Moving the package to /home/install directory....\n";
 system("mv $package_path /home/install");
@@ -55,7 +56,8 @@ system("yum install -y elinks*");
 print "Starting ePrint installation....\n";
 print "Changing to /home/install\n";
 
-system("cd /home/install");
+#system("cd /home/install");
+chdir("/home/install");
 
 print "Executing the main ePrint install script\n";
 #system("./install_new.pl");
