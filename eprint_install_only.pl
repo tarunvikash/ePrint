@@ -3,21 +3,23 @@
 
 use strict;
 use warnings;
-use File::chdir;
+#use File::chdir;
 
 print "Locating ePrint package....\n";
 
-my $package_path=system("locate -i eprint-4.4.1.RHEL6.tar.gz");
+my $package_path=`locate -i eprint-4.4.1.RHEL6.tar.gz`;
+chomp($package_path);
 print  "Displaying RHEL version....\n";
 
 system("cat /etc/redhat-release");
 
 print "Listing yum repository and all the packages....\n";
 
-system("yum repolist");
-system("yum list all");
+#system("yum repolist");
+#system("yum list all");
 
-my $arch=system("uname -p");
+my $arch= `uname -p`;
+chomp($arch);
 
 print "Creating the /home/install directory....\n";
 system("mkdir -p /home/install");
