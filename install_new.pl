@@ -19,19 +19,19 @@ if ($proc ne 'x86_64') {
     $proc = 'i686';
 }
 
-print "proc = $proc \n";
-print "$clear \n";	
+#print "proc = $proc \n";
+#print "$clear \n";	
 
-&begmessage("	*****  Installing Redhat Packages  *****");
+#&begmessage("	*****  Installing Redhat Packages  *****");
 #&installpackages("$installpath/packages");
 
-&begmessage("	*****  Installing Perl Modules  *****");
+#&begmessage("	*****  Installing Perl Modules  *****");
 #&installperlmodules("$installpath/perlmodules");
 
-&begmessage("	*****  Installing ePrint Groups  *****");
+#&begmessage("	*****  Installing ePrint Groups  *****");
 #&addeprintgroup("/usr/sbin/./groupadd");
 
-&begmessage("	*****  Installing ePrint User  *****");
+#&begmessage("	*****  Installing ePrint User  *****");
 #&eprint_user;
 
 #&begmessage("	*****  Installing MySQL  *****");
@@ -41,10 +41,10 @@ print "$clear \n";
 #&configmysql(); 
 
 &begmessage("	*****  Installing Configiguration Files  *****");
-#&installconfig("$installpath/config");
-
-print "mysqld status:\n";
-system ( "systemctl status mariadb");
+&installconfig("$installpath/config");
+exit;
+#print "mysqld status:\n";
+#system ( "systemctl status mariadb");
 	
 &begmessage("	*****  Creating prod database *****");
 #&createprod();
@@ -121,7 +121,7 @@ system ( "systemctl status mariadb");
 
 
 #print STDERR "\n\n Restarting the web server \n";
-system("service httpd restart");
+#system("service httpd restart");
 
 ##### Configuring services 
    #&begmessage("	*****  Configuring Services *****");
@@ -179,7 +179,7 @@ sub configmysql {
 	print "Configuring mysql \n\n";
 
 	print "\n\nCreating the MySQL administrator \n\n";
-	system ( "mysqladmin password 8Apes2Go" );
+	system ( "mysqladmin password redhat" );
 
 	my $dbh;
 	$dbh = DBI->connect( 'DBI:mysql:mysql', 'root', 'redhat')
@@ -198,10 +198,10 @@ sub configmysql {
 	$sth2->finish;
 	
 	print "Removing the default test database \n\n";
-	my $drop_test = "Drop DATABASE test";
-	my $sth3 = $dbh->prepare($drop_test);
-	$sth3->execute();
-	$sth3->finish;
+	#my $drop_test = "Drop DATABASE test";
+	#my $sth3 = $dbh->prepare($drop_test);
+	#$sth3->execute();
+	#$sth3->finish;
 
 	my $del_test = "DELETE from db where Host =  '% '";
 	my $sth4 = $dbh->prepare($del_test);
