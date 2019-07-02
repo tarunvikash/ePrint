@@ -14,7 +14,7 @@ print_message("Installing VIM");
 &install_packages("vim", $install, 1);
 
 print_message("Group installing required packages");
-&install_packages("\"server with gui\" \"Development tools\" \"base\" \"X window system\" \"perl support\" \"FTP server\" \"web server\" \"server with gui\"", $group_install, 1 );
+&install_packages("\"server with gui\" \"Development tools\" \"base\" \"X window system\" \"perl support\" \"FTP server\" \"web server\" ", $group_install, 1 );
 
 
 print_message("Running Update");

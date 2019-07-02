@@ -7,7 +7,7 @@ use warnings;
 
 print "Locating ePrint package....\n";
 
-my $package_path=`locate -i eprint-4.4.1.RHEL6.tar.gz`;
+my $package_path="eprint-4.4.1.RHEL6.tar.gz";
 chomp($package_path);
 print  "Displaying RHEL version....\n";
 
